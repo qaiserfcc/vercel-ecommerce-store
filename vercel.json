@@ -1,26 +1,24 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/gateway/index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "client/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+  "buildCommand": "cd client && npm run build",
+  "outputDirectory": "client/build",
+  "installCommand": "npm install --legacy-peer-deps && cd client && npm install --legacy-peer-deps",
+  "functions": {
+    "api/gateway/index.js": {
+      "runtime": "nodejs20.x"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/api/gateway/index.js"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/client/$1"
+      "dest": "/$1"
     }
   ]
 }
