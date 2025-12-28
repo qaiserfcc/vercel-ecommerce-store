@@ -28,8 +28,14 @@ class PaymentService {
   }
 
   async processPayment(paymentId, userId) {
-    // In a real application, this would integrate with payment gateway
-    // For now, we'll simulate payment processing
+    // ============================================================================
+    // IMPORTANT: This is a SIMULATED payment processor for development/testing!
+    // In production, replace this with actual payment gateway integration such as:
+    // - Stripe: https://stripe.com/docs/api
+    // - PayPal: https://developer.paypal.com/
+    // - Square: https://developer.squareup.com/
+    // This simulation has a 90% success rate to demonstrate error handling.
+    // ============================================================================
     
     const paymentResult = await db.query(
       `SELECT p.*, o.user_id 
@@ -49,8 +55,9 @@ class PaymentService {
       throw new Error('Unauthorized');
     }
 
-    // Simulate payment processing
-    const success = Math.random() > 0.1; // 90% success rate
+    // SIMULATION: Random success/failure (90% success rate)
+    // TODO: Replace with actual payment gateway API call
+    const success = Math.random() > 0.1;
 
     const status = success ? 'completed' : 'failed';
 

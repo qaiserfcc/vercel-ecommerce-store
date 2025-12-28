@@ -1,10 +1,13 @@
 -- Sample seed data for testing the e-commerce platform
+-- WARNING: For development/testing only! Do NOT use in production!
 
--- Insert sample admin user (password: admin123)
+-- Insert sample admin user (password: password123)
+-- Hash generated with: bcrypt.hash('password123', 10)
 INSERT INTO users (email, password_hash, first_name, last_name, phone, role) VALUES
 ('admin@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin', 'User', '1234567890', 'admin');
 
--- Insert sample customer user (password: customer123)
+-- Insert sample customer user (password: password123)  
+-- Hash generated with: bcrypt.hash('password123', 10)
 INSERT INTO users (email, password_hash, first_name, last_name, phone, role) VALUES
 ('customer@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John', 'Doe', '9876543210', 'customer');
 
@@ -30,5 +33,6 @@ INSERT INTO discounts (code, description, discount_type, discount_value, min_ord
 -- Insert a cart for the customer user (user_id = 2)
 INSERT INTO carts (user_id) VALUES (2);
 
--- Note: Password hashes above are for 'password123' 
--- In production, these should be properly hashed with bcrypt
+-- NOTE: These are development/testing credentials only!
+-- Both accounts use password: 'password123'
+-- In production, always use strong, unique passwords and never commit credentials!
