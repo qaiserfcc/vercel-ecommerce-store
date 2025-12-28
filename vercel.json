@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "installCommand": "npm install --legacy-peer-deps",
   "builds": [
     {
       "src": "api/gateway/index.js",
@@ -23,8 +22,5 @@
       "src": "/(.*)",
       "dest": "/client/$1"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
