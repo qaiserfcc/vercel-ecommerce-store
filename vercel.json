@@ -3,11 +3,6 @@
   "buildCommand": "cd client && npm run build",
   "outputDirectory": "client/build",
   "installCommand": "npm install --legacy-peer-deps && cd client && npm install --legacy-peer-deps",
-  "functions": {
-    "api/gateway/index.js": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "routes": [
     {
       "src": "/api/(.*)",
