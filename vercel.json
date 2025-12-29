@@ -1,16 +1,14 @@
 {
   "version": 2,
+  "buildCommand": "cd client && npm install --legacy-peer-deps && npm run build",
   "builds": [
     {
       "src": "api/gateway/index.js",
       "use": "@vercel/node"
     },
     {
-      "src": "client/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+      "src": "client/build",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -20,7 +18,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/client/$1"
+      "dest": "/client/build/$1"
     }
   ]
 }
