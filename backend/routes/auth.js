@@ -36,7 +36,12 @@ router.post('/register', async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    res.cookie('token', token, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
+    res.cookie('token', token, { 
+      httpOnly: true, 
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict'
+    });
     res.json({ user, token });
   } catch (error) {
     console.error('Register error:', error);
@@ -70,7 +75,12 @@ router.post('/login', async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    res.cookie('token', token, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
+    res.cookie('token', token, { 
+      httpOnly: true, 
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict'
+    });
     res.json({
       user: {
         id: user.id,

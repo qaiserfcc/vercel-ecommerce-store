@@ -43,8 +43,17 @@ app.get('/api/health', (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
+  // Log error for debugging (use proper logging service in production)
+  if (process.env.NODE_ENV === 'development') {
+    console.error(err.stack);
+  }
+  
+  // Don't expose error details in production
+  const message = process.env.NODE_ENV === 'production' 
+    ? 'Something went wrong!' 
+    : err.message;
+    
+  res.status(err.status || 500).json({ error: message });
 });
 
 app.listen(PORT, () => {

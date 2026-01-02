@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 const banners = [
   {
@@ -62,12 +63,12 @@ export default function Banner() {
             <div className="max-w-2xl">
               <h2 className="text-5xl font-bold text-dark mb-4">{banner.title}</h2>
               <p className="text-xl text-dark-light mb-8">{banner.description}</p>
-              <a
+              <Link
                 href={banner.link}
                 className="inline-block bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-lg"
               >
                 {banner.cta}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
